@@ -5,4 +5,6 @@ export type Product = {
   image: string;
   price: number;
   createdAt: string;
+  quantidade: number;
+  total: number;
 };

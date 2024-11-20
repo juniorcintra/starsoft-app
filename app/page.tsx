@@ -1,15 +1,25 @@
 "use client";
+
 import { useQuery } from "@tanstack/react-query";
-import { Product } from "./types";
 import api from "./_services/api";
+import { Product } from "./types";
+import CardItem from "./_components/CardItem";
 
 export default function Home() {
-  const queryInfo = useQuery({
+  const queryInfo = useQuery<Product[]>({
     queryKey: ["products"],
     queryFn: async () => {
-      return api.get<Product[]>("/products").then((d) => d.data);
+      return api.get("/products").then((d) => d.data.data);
     },
   });
-  console.log("🚀 ~ queryInfo:", queryInfo);
-  return <h1>Home</h1>;
+
+  return (
+    <main className="home">
+      <div className="content">
+        {queryInfo?.data?.map((item, index) => (
+          <CardItem key={index} item={item} />
+        ))}
+      </div>
+    </main>
+  );
 }
