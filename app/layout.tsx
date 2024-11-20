@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Footer from "./_components/Footer";
 import "./global.scss";
+import Header from "./_components/Header";
 
 const poppins = Poppins({
   subsets: ["latin"],
   display: "swap",
-  variable: "--poppins-font",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal"],
 });
@@ -22,8 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable}`}>
+    <html lang="pt-BR">
+      <body className={`${poppins.className}`}>
+        <Header />
         {children}
         <Footer />
       </body>
